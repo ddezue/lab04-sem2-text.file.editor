@@ -43,7 +43,7 @@ namespace lab04_sem2_text.file.editor
 
       files = Directory.GetFiles(directoryPath, TextFileSearchPattern, SearchOption.AllDirectories);
 
-      for (fileIndex = StartingIndex; fileIndex < files.Length; fileIndex = fileIndex + 1) {
+      for (fileIndex = StartingIndex; fileIndex < files.Length; ++fileIndex) {
         string file;
         bool fileContainsKeywords;
 
@@ -83,7 +83,7 @@ namespace lab04_sem2_text.file.editor
           content = content.ToLower();
         }
 
-        for (keywordIndex = StartingIndex; keywordIndex < _keywords.Length; keywordIndex = keywordIndex + 1) {
+        for (keywordIndex = StartingIndex; keywordIndex < _keywords.Length; ++keywordIndex) {
           string keyword;
           string searchKeyword;
 

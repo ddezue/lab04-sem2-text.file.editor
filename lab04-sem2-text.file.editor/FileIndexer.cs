@@ -140,7 +140,7 @@ namespace lab04_sem2_text.file.editor
       filteredResults = new List<string>();
 
       int resultIndex;
-      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; resultIndex = resultIndex + 1) {
+      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; ++resultIndex {
         string file;
         file = _lastResults[resultIndex];
 
@@ -163,7 +163,7 @@ namespace lab04_sem2_text.file.editor
           found = true;
 
           int keywordIndex;
-          for (keywordIndex = StartingIndex; keywordIndex < searchKeywords.Length; keywordIndex = keywordIndex + 1) {
+          for (keywordIndex = StartingIndex; keywordIndex < searchKeywords.Length; ++keywordIndex) {
             string keyword;
             keyword = searchKeywords[keywordIndex];
             keyword = keyword.ToLower();
@@ -190,7 +190,7 @@ namespace lab04_sem2_text.file.editor
         Console.WriteLine("\nFiles:");
 
         int displayIndex;
-        for (displayIndex = StartingIndex; displayIndex < filteredResults.Count; displayIndex = displayIndex + 1) {
+        for (displayIndex = StartingIndex; displayIndex < filteredResults.Count; ++displayIndex) {
           string file;
           file = filteredResults[displayIndex];
           Console.WriteLine($"- {file}");
@@ -206,7 +206,7 @@ namespace lab04_sem2_text.file.editor
       }
 
       int resultIndex;
-      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; resultIndex = resultIndex + 1) {
+      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; ++resultIndex) {
         string file;
         file = _lastResults[resultIndex];
         Console.WriteLine($"{resultIndex + 1}. {file}");
