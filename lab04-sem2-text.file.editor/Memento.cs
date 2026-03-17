@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace lab04_sem2_text.file.editor
+﻿namespace lab04_sem2_text.file.editor
 {
-  internal class Memento
+  public class Memento
   {
+    public string Content { get; set; }
+    public string Description { get; set; }
+
+
+    public interface IOriginator
+    {
+      object GetMemento();
+      void SetMemento(object memento);
+    }
   }
 }
