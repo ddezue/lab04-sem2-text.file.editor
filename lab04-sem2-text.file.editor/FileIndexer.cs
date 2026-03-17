@@ -140,7 +140,7 @@ namespace lab04_sem2_text.file.editor
       filteredResults = new List<string>();
 
       int resultIndex;
-      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; ++resultIndex {
+      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; ++resultIndex ) {
         string file;
         file = _lastResults[resultIndex];
 
