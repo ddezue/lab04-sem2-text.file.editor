@@ -9,25 +9,25 @@ namespace lab04_sem2_text.file.editor
     public int MaxFilesToDisplay;
     public int StartingIndex;
 
-    public TextFileSearcher _searcher;
-    public List<string> _lastResults;
+    public TextFileSearcher Searcher;
+    public List<string> LastResults;
 
     public FileIndexerApp()
     {
       MaxFilesToDisplay = 10;
       StartingIndex = 0;
-      _searcher = new TextFileSearcher();
-      _lastResults = new List<string>();
+      Searcher = new TextFileSearcher();
+      LastResults = new List<string>();
     }
 
     public void Run()
     {
       bool isRunning;
+      string choice;
       isRunning = true;
 
       while (isRunning) {
         ShowMenu();
-        string choice;
         choice = Console.ReadLine();
 
         switch (choice)
@@ -75,8 +75,7 @@ namespace lab04_sem2_text.file.editor
       string directory;
       directory = Console.ReadLine();
 
-      if (Directory.Exists(directory) == false)
-      {
+      if (Directory.Exists(directory) == false) {
         Console.WriteLine("Directory does not exist");
         return;
       }
@@ -93,38 +92,37 @@ namespace lab04_sem2_text.file.editor
       caseSensitiveInput = Console.ReadLine();
 
       bool caseSensitive;
+
       if (caseSensitiveInput != null && caseSensitiveInput == "y") {
         caseSensitive = true;
-      }
-      else {
+      } else {
         caseSensitive = false;
       }
 
-      _searcher.SetKeywords(keywords);
-      _searcher.SetCaseSensitive(caseSensitive);
+      Searcher.SetKeywords(keywords);
+      Searcher.SetCaseSensitive(caseSensitive);
 
       Console.WriteLine("Search started");
-      _lastResults = _searcher.SearchInDirectory(directory);
+      LastResults = Searcher.SearchInDirectory(directory);
 
-      Console.WriteLine($"Search completed. Files found: {_lastResults.Count}");
+      Console.WriteLine($"Search completed. Files found: {LastResults.Count}");
 
-      if (_lastResults.Count > 0)
-      {
+      if (LastResults.Count > 0) {
         Console.WriteLine("\nFiles found:");
 
-        for (int resultIndex = 0; resultIndex < _lastResults.Count && resultIndex < MaxFilesToDisplay; ++resultIndex)
-        {
-          Console.WriteLine($"- {_lastResults[resultIndex]}");
+        for (int resultIndex = 0; resultIndex < LastResults.Count && resultIndex < MaxFilesToDisplay; ++resultIndex) {
+          Console.WriteLine($"- {LastResults[resultIndex]}");
         }
 
-        if (_lastResults.Count > MaxFilesToDisplay)
-          Console.WriteLine($"... and {_lastResults.Count - MaxFilesToDisplay} more files");
+        if (LastResults.Count > MaxFilesToDisplay) {
+          Console.WriteLine($"... and {LastResults.Count - MaxFilesToDisplay} more files");
+        }
       }
     }
 
     private void SearchFiles()
     {
-      if (_lastResults.Count == 0) {
+      if (LastResults.Count == 0) {
         Console.WriteLine("Please index a directory first");
         return;
       }
@@ -140,10 +138,10 @@ namespace lab04_sem2_text.file.editor
       filteredResults = new List<string>();
 
       int resultIndex;
-      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; ++resultIndex ) {
-        string file;
-        file = _lastResults[resultIndex];
+      string file;
 
+      for (resultIndex = StartingIndex; resultIndex < LastResults.Count; ++resultIndex ) {
+        file = LastResults[resultIndex];
         try
         {
           FileStream fileStream;
@@ -163,8 +161,9 @@ namespace lab04_sem2_text.file.editor
           found = true;
 
           int keywordIndex;
+          string keyword;
+
           for (keywordIndex = StartingIndex; keywordIndex < searchKeywords.Length; ++keywordIndex) {
-            string keyword;
             keyword = searchKeywords[keywordIndex];
             keyword = keyword.ToLower();
 
@@ -186,12 +185,12 @@ namespace lab04_sem2_text.file.editor
 
       Console.WriteLine($"Files found: {filteredResults.Count}");
 
+      int displayIndex;
+
       if (filteredResults.Count > 0) {
         Console.WriteLine("\nFiles:");
 
-        int displayIndex;
         for (displayIndex = StartingIndex; displayIndex < filteredResults.Count; ++displayIndex) {
-          string file;
           file = filteredResults[displayIndex];
           Console.WriteLine($"- {file}");
         }
@@ -200,15 +199,17 @@ namespace lab04_sem2_text.file.editor
 
     private void ShowResults()
     {
-      if (_lastResults.Count == 0) {
+      string file;
+
+      if (LastResults.Count == 0) {
         Console.WriteLine("No results to display");
         return;
       }
 
       int resultIndex;
-      for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; ++resultIndex) {
-        string file;
-        file = _lastResults[resultIndex];
+
+      for (resultIndex = StartingIndex; resultIndex < LastResults.Count; ++resultIndex) {
+        file = LastResults[resultIndex];
         Console.WriteLine($"{resultIndex + 1}. {file}");
       }
     }

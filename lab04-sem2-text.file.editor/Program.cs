@@ -6,7 +6,9 @@ namespace lab04_sem2_text.file.editor
   {
     static void Main(string[] args)
     {
-      bool isRunning = true;
+      bool isRunning;
+      string choice;
+      isRunning = true;
 
       while (isRunning) {
         Console.Clear();
@@ -16,7 +18,6 @@ namespace lab04_sem2_text.file.editor
         Console.WriteLine("0. Exit");
         Console.Write("\nChoose: ");
 
-        string choice;
         choice = Console.ReadLine();
 
         while (Console.KeyAvailable) {

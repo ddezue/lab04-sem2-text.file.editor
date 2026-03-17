@@ -8,25 +8,25 @@ namespace lab04_sem2_text.file.editor
     public string TextFileSearchPattern;
     public int StartingIndex;
 
-    public string[] _keywords;
-    public bool _caseSensitive;
+    public string[] Keywords;
+    public bool CaseSensitive;
 
     public TextFileSearcher()
     {
       TextFileSearchPattern = "*.txt";
       StartingIndex = 0;
-      _keywords = new string[0];
-      _caseSensitive = false;
+      Keywords = new string[0];
+      CaseSensitive = false;
     }
 
     public void SetKeywords(string[] keywords)
     {
-      _keywords = keywords;
+      Keywords = keywords;
     }
 
     public void SetCaseSensitive(bool caseSensitive)
     {
-      _caseSensitive = caseSensitive;
+      CaseSensitive = caseSensitive;
     }
 
     public List<string> SearchInDirectory(string directoryPath)
@@ -34,6 +34,8 @@ namespace lab04_sem2_text.file.editor
       List<string> results;
       string[] files;
       int fileIndex;
+      string file;
+      bool fileContainsKeywords;
 
       results = new List<string>();
 
@@ -44,9 +46,6 @@ namespace lab04_sem2_text.file.editor
       files = Directory.GetFiles(directoryPath, TextFileSearchPattern, SearchOption.AllDirectories);
 
       for (fileIndex = StartingIndex; fileIndex < files.Length; ++fileIndex) {
-        string file;
-        bool fileContainsKeywords;
-
         file = files[fileIndex];
         fileContainsKeywords = FileContainsKeywords(file);
 
@@ -67,6 +66,8 @@ namespace lab04_sem2_text.file.editor
       {
         string content;
         int keywordIndex;
+        string keyword;
+        string searchKeyword;
 
         FileStream fileStream;
         StreamReader streamReader;
@@ -79,20 +80,16 @@ namespace lab04_sem2_text.file.editor
         streamReader.Close();
         fileStream.Close();
 
-        if (_caseSensitive == false) {
+        if (CaseSensitive == false) {
           content = content.ToLower();
         }
 
-        for (keywordIndex = StartingIndex; keywordIndex < _keywords.Length; ++keywordIndex) {
-          string keyword;
-          string searchKeyword;
+        for (keywordIndex = StartingIndex; keywordIndex < Keywords.Length; ++keywordIndex) {
+          keyword = Keywords[keywordIndex];
 
-          keyword = _keywords[keywordIndex];
-
-          if (_caseSensitive) {
+          if (CaseSensitive) {
             searchKeyword = keyword;
-          }
-          else {
+          } else {
             searchKeyword = keyword.ToLower();
           }
 

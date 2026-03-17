@@ -50,8 +50,7 @@ namespace lab04_sem2_text.file.editor
         fileStream.Close();
 
         LastModified = File.GetLastWriteTime(FilePath);
-      }
-      else {
+      } else {
         Content = string.Empty;
         LastModified = DateTime.Now;
       }
@@ -144,8 +143,7 @@ namespace lab04_sem2_text.file.editor
 
       if (Content == null)  {
         contentLength = 0;
-      }
-      else {
+      } else {
         contentLength = Content.Length;
       }
 

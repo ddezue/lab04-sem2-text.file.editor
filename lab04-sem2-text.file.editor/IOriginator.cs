@@ -72,8 +72,7 @@ namespace lab04_sem2_text.file.editor
 
       if (Content == null) {
         contentLength = 0;
-      }
-      else {
+      } else {
         contentLength = Content.Length;
       }
 

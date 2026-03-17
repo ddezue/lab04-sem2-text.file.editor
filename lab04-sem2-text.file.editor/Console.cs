@@ -21,11 +21,11 @@ namespace lab04_sem2_text.file.editor
     public void Run()
     {
       bool isRunning;
+      string choice;
       isRunning = true;
 
       while (isRunning) {
         ShowMenu();
-        string choice;
         choice = Console.ReadLine();
 
         switch (choice)
@@ -91,8 +91,7 @@ namespace lab04_sem2_text.file.editor
         Console.WriteLine($"Path: {_currentFile.FilePath}");
         Console.WriteLine($"Last modified: {_currentFile.LastModified}");
         Console.WriteLine();
-      }
-      else {
+      } else {
         Console.WriteLine("No file opened\n");
       }
 
@@ -136,8 +135,7 @@ namespace lab04_sem2_text.file.editor
         _caretaker.SaveState(_currentFile);
 
         Console.WriteLine("File opened successfully");
-      }
-      else {
+      } else {
         Console.WriteLine("File not found");
       }
     }
@@ -196,8 +194,7 @@ namespace lab04_sem2_text.file.editor
       if (_caretaker.CanUndo()) {
         _caretaker.Undo(_currentFile);
         Console.WriteLine("Undo performed");
-      }
-      else {
+      } else {
         Console.WriteLine("Nothing to undo");
       }
     }
@@ -207,8 +204,7 @@ namespace lab04_sem2_text.file.editor
       if (_caretaker.CanRedo()) {
         _caretaker.Redo(_currentFile);
         Console.WriteLine("Redo performed");
-      }
-      else {
+      } else {
         Console.WriteLine("Nothing to redo");
       }
     }
@@ -249,8 +245,7 @@ namespace lab04_sem2_text.file.editor
         _caretaker.SaveState(_currentFile);
 
         Console.WriteLine("Binary deserialization completed");
-      }
-      else {
+      } else {
         Console.WriteLine("File not found");
       }
     }
@@ -291,8 +286,7 @@ namespace lab04_sem2_text.file.editor
         _caretaker.SaveState(_currentFile);
 
         Console.WriteLine("XML deserialization completed");
-      }
-      else {
+      } else {
         Console.WriteLine("File not found");
       }
     }

@@ -6,14 +6,14 @@ namespace lab04_sem2_text.file.editor
   {
     public int MinimumMementoCountForUndo;
 
-    public Stack<object> _mementos;
-    public Stack<object> _redoStack;
+    public Stack<object> Mementos;
+    public Stack<object> RedoStack;
 
     public Caretaker()
     {
       MinimumMementoCountForUndo = 2;
-      _mementos = new Stack<object>();
-      _redoStack = new Stack<object>();
+      Mementos = new Stack<object>();
+      RedoStack = new Stack<object>();
     }
 
     public void SaveState(IOriginator originator)
@@ -21,31 +21,31 @@ namespace lab04_sem2_text.file.editor
       object currentState;
       currentState = originator.GetMemento();
 
-      _mementos.Push(currentState);
-      _redoStack.Clear();
+      Mementos.Push(currentState);
+      RedoStack.Clear();
     }
 
     public void Undo(IOriginator originator)
     {
-      if (_mementos.Count >= MinimumMementoCountForUndo) {
+      if (Mementos.Count >= MinimumMementoCountForUndo) {
         object currentState;
         object previousState;
 
-        currentState = _mementos.Pop();
-        _redoStack.Push(currentState);
+        currentState = Mementos.Pop();
+        RedoStack.Push(currentState);
 
-        previousState = _mementos.Peek();
+        previousState = Mementos.Peek();
         originator.SetMemento(previousState);
       }
     }
 
     public void Redo(IOriginator originator)
     {
-      if (_redoStack.Count > 0) {
+      if (RedoStack.Count > 0) {
         object stateToRedo;
-        stateToRedo = _redoStack.Pop();
+        stateToRedo = RedoStack.Pop();
 
-        _mementos.Push(stateToRedo);
+        Mementos.Push(stateToRedo);
         originator.SetMemento(stateToRedo);
       }
     }
@@ -54,10 +54,9 @@ namespace lab04_sem2_text.file.editor
     {
       bool canUndo;
 
-      if (_mementos.Count >= MinimumMementoCountForUndo) {
+      if (Mementos.Count >= MinimumMementoCountForUndo) {
         canUndo = true;
-      }
-      else {
+      } else {
         canUndo = false;
       }
 
@@ -66,13 +65,13 @@ namespace lab04_sem2_text.file.editor
 
     public bool CanRedo()
     {
-      return _mementos.Count >= MinimumMementoCountForUndo;
+      return Mementos.Count >= MinimumMementoCountForUndo;
     }
 
     public void Clear()
     {
-      _mementos.Clear();
-      _redoStack.Clear();
+      Mementos.Clear();
+      RedoStack.Clear();
     }
   }
 }
