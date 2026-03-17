@@ -66,16 +66,7 @@ namespace lab04_sem2_text.file.editor
 
     public bool CanRedo()
     {
-      bool canRedo;
-
-      if (_redoStack.Count > 0) {
-        canRedo = true;
-      }
-      else {
-        canRedo = false;
-      }
-
-      return canRedo;
+      return _mementos.Count >= MinimumMementoCountForUndo;
     }
 
     public void Clear()

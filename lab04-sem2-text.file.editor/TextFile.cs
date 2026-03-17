@@ -62,9 +62,7 @@ namespace lab04_sem2_text.file.editor
       string directoryPath;
       directoryPath = Path.GetDirectoryName(FilePath);
 
-      if (string.IsNullOrEmpty(directoryPath) == false) {
-        Directory.CreateDirectory(directoryPath);
-      }
+      Directory.CreateDirectory(directoryPath);
 
       FileStream fileStream;
       StreamWriter streamWriter;
@@ -91,8 +89,6 @@ namespace lab04_sem2_text.file.editor
       binaryFormatter = new BinaryFormatter();
 
       binaryFormatter.Serialize(fileStream, this);
-      fileStream.Flush();
-      fileStream.Close();
     }
 
     public void BinaryDeserialize(string filePath)

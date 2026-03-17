@@ -108,25 +108,17 @@ namespace lab04_sem2_text.file.editor
 
       Console.WriteLine($"Search completed. Files found: {_lastResults.Count}");
 
-      if (_lastResults.Count > 0) {
+      if (_lastResults.Count > 0)
+      {
         Console.WriteLine("\nFiles found:");
 
-        int resultIndex;
-        for (resultIndex = StartingIndex; resultIndex < _lastResults.Count; resultIndex = resultIndex + 1) {
-          if (resultIndex >= MaxFilesToDisplay) {
-            break;
-          }
-
-          string file;
-          file = _lastResults[resultIndex];
-          Console.WriteLine($"- {file}");
+        for (int resultIndex = 0; resultIndex < _lastResults.Count && resultIndex < MaxFilesToDisplay; ++resultIndex)
+        {
+          Console.WriteLine($"- {_lastResults[resultIndex]}");
         }
 
-        if (_lastResults.Count > MaxFilesToDisplay) {
-          int remainingCount;
-          remainingCount = _lastResults.Count - MaxFilesToDisplay;
-          Console.WriteLine($"... and {remainingCount} more files");
-        }
+        if (_lastResults.Count > MaxFilesToDisplay)
+          Console.WriteLine($"... and {_lastResults.Count - MaxFilesToDisplay} more files");
       }
     }
 
