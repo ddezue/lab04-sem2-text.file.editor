@@ -27,10 +27,10 @@ namespace lab04_sem2_text.file.editor
 
     public void Undo(IOriginator originator)
     {
-      if (Mementos.Count >= MinimumMementoCountForUndo) {
-        object currentState;
-        object previousState;
+      object currentState;
+      object previousState;
 
+      if (Mementos.Count >= MinimumMementoCountForUndo) {
         currentState = Mementos.Pop();
         RedoStack.Push(currentState);
 
@@ -41,8 +41,9 @@ namespace lab04_sem2_text.file.editor
 
     public void Redo(IOriginator originator)
     {
+      object stateToRedo;
+
       if (RedoStack.Count > 0) {
-        object stateToRedo;
         stateToRedo = RedoStack.Pop();
 
         Mementos.Push(stateToRedo);

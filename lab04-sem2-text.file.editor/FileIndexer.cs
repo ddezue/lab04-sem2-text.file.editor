@@ -139,6 +139,10 @@ namespace lab04_sem2_text.file.editor
 
       int resultIndex;
       string file;
+      string content;
+      bool found;
+      int keywordIndex;
+      string keyword;
 
       for (resultIndex = StartingIndex; resultIndex < LastResults.Count; ++resultIndex ) {
         file = LastResults[resultIndex];
@@ -150,18 +154,14 @@ namespace lab04_sem2_text.file.editor
           fileStream = new FileStream(file, FileMode.Open, FileAccess.Read);
           streamReader = new StreamReader(fileStream);
 
-          string content;
+
           content = streamReader.ReadToEnd();
           content = content.ToLower();
 
           streamReader.Close();
           fileStream.Close();
 
-          bool found;
           found = true;
-
-          int keywordIndex;
-          string keyword;
 
           for (keywordIndex = StartingIndex; keywordIndex < searchKeywords.Length; ++keywordIndex) {
             keyword = searchKeywords[keywordIndex];

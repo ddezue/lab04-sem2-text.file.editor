@@ -81,10 +81,11 @@ namespace lab04_sem2_text.file.editor
 
     private void ShowMenu()
     {
+      string fileName;
+
       Console.WriteLine("Text File Editor\n");
 
       if (_currentFile != null) {
-        string fileName;
         fileName = Path.GetFileName(_currentFile.FilePath);
 
         Console.WriteLine($"Current file: {fileName}");
